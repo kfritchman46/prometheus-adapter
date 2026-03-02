@@ -341,7 +341,8 @@ func main() {
 	}
 
 	// stop channel closed on SIGTERM and SIGINT
-	stopCh := genericapiserver.SetupSignalHandler()
+	ctx := genericapiserver.SetupSignalContext()
+	stopCh := ctx.Done()
 
 	// construct the provider
 	cmProvider, err := cmd.makeProvider(promClient, stopCh)
@@ -379,7 +380,7 @@ func main() {
 	server.GenericAPIServer.SecureServingInfo.DisableHTTP2 = cmd.DisableHTTP2
 
 	// run the server
-	if err := cmd.Run(stopCh); err != nil {
+	if err := cmd.Run(ctx); err != nil {
 		klog.Fatalf("unable to run custom metrics adapter: %v", err)
 	}
 }
