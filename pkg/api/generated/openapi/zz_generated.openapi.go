@@ -25,6 +25,7 @@ import (
 	v1 "k8s.io/api/core/v1"
 	resource "k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	version "k8s.io/apimachinery/pkg/version"
 	common "k8s.io/kube-openapi/pkg/common"
 	spec "k8s.io/kube-openapi/pkg/validation/spec"
 	v1beta1 "k8s.io/metrics/pkg/apis/custom_metrics/v1beta1"
@@ -322,6 +323,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		metav1.TypeMeta{}.OpenAPIModelName():                                schema_pkg_apis_meta_v1_TypeMeta(ref),
 		metav1.UpdateOptions{}.OpenAPIModelName():                           schema_pkg_apis_meta_v1_UpdateOptions(ref),
 		metav1.WatchEvent{}.OpenAPIModelName():                              schema_pkg_apis_meta_v1_WatchEvent(ref),
+		version.Info{}.OpenAPIModelName():                                   schema_k8sio_apimachinery_pkg_version_Info(ref),
 		v1beta1.MetricListOptions{}.OpenAPIModelName():                      schema_pkg_apis_custom_metrics_v1beta1_MetricListOptions(ref),
 		v1beta1.MetricValue{}.OpenAPIModelName():                            schema_pkg_apis_custom_metrics_v1beta1_MetricValue(ref),
 		v1beta1.MetricValueList{}.OpenAPIModelName():                        schema_pkg_apis_custom_metrics_v1beta1_MetricValueList(ref),
@@ -16742,6 +16744,113 @@ func schema_pkg_apis_meta_v1_WatchEvent(ref common.ReferenceCallback) common.Ope
 		},
 		Dependencies: []string{
 			"k8s.io/apimachinery/pkg/runtime.RawExtension"},
+	}
+}
+
+func schema_k8sio_apimachinery_pkg_version_Info(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Info contains versioning information. how we'll want to distribute that information.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"major": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Major is the major version of the binary version",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"minor": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Minor is the minor version of the binary version",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"emulationMajor": {
+						SchemaProps: spec.SchemaProps{
+							Description: "EmulationMajor is the major version of the emulation version",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"emulationMinor": {
+						SchemaProps: spec.SchemaProps{
+							Description: "EmulationMinor is the minor version of the emulation version",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"minCompatibilityMajor": {
+						SchemaProps: spec.SchemaProps{
+							Description: "MinCompatibilityMajor is the major version of the minimum compatibility version",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"minCompatibilityMinor": {
+						SchemaProps: spec.SchemaProps{
+							Description: "MinCompatibilityMinor is the minor version of the minimum compatibility version",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"gitVersion": {
+						SchemaProps: spec.SchemaProps{
+							Default: "",
+							Type:    []string{"string"},
+							Format:  "",
+						},
+					},
+					"gitCommit": {
+						SchemaProps: spec.SchemaProps{
+							Default: "",
+							Type:    []string{"string"},
+							Format:  "",
+						},
+					},
+					"gitTreeState": {
+						SchemaProps: spec.SchemaProps{
+							Default: "",
+							Type:    []string{"string"},
+							Format:  "",
+						},
+					},
+					"buildDate": {
+						SchemaProps: spec.SchemaProps{
+							Default: "",
+							Type:    []string{"string"},
+							Format:  "",
+						},
+					},
+					"goVersion": {
+						SchemaProps: spec.SchemaProps{
+							Default: "",
+							Type:    []string{"string"},
+							Format:  "",
+						},
+					},
+					"compiler": {
+						SchemaProps: spec.SchemaProps{
+							Default: "",
+							Type:    []string{"string"},
+							Format:  "",
+						},
+					},
+					"platform": {
+						SchemaProps: spec.SchemaProps{
+							Default: "",
+							Type:    []string{"string"},
+							Format:  "",
+						},
+					},
+				},
+				Required: []string{"major", "minor", "gitVersion", "gitCommit", "gitTreeState", "buildDate", "goVersion", "compiler", "platform"},
+			},
+		},
 	}
 }
 
