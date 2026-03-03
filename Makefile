@@ -115,4 +115,4 @@ update-generated:
 		--output-file zz_generated.openapi.go \
 		--output-dir ./pkg/api/generated/openapi \
 		-r /dev/null \
-		"k8s.io/metrics/pkg/apis/custom_metrics" "k8s.io/metrics/pkg/apis/custom_metrics/v1beta1" "k8s.io/metrics/pkg/apis/custom_metrics/v1beta2" "k8s.io/metrics/pkg/apis/external_metrics" "k8s.io/metrics/pkg/apis/external_metrics/v1beta1" "k8s.io/metrics/pkg/apis/metrics" "k8s.io/metrics/pkg/apis/metrics/v1beta1" "k8s.io/apimachinery/pkg/apis/meta/v1" "k8s.io/apimachinery/pkg/api/resource" "k8s.io/api/core/v1"
+		"k8s.io/apimachinery/pkg/version" "k8s.io/metrics/pkg/apis/custom_metrics" "k8s.io/metrics/pkg/apis/custom_metrics/v1beta1" "k8s.io/metrics/pkg/apis/custom_metrics/v1beta2" "k8s.io/metrics/pkg/apis/external_metrics" "k8s.io/metrics/pkg/apis/external_metrics/v1beta1" "k8s.io/metrics/pkg/apis/metrics" "k8s.io/metrics/pkg/apis/metrics/v1beta1" "k8s.io/apimachinery/pkg/apis/meta/v1" "k8s.io/apimachinery/pkg/api/resource" "k8s.io/api/core/v1"
